@@ -16,6 +16,7 @@ public class GameFrame extends MyFrame{
 			GameWorld.enterPressed=false;
 			while(true){
 				clear();
+				repaint();
 				drawString("stage="+GameWorld.stage,300,50,15);
 				drawString("score="+GameWorld.score,300,80,15);
 				GameWorld.player.draw(this);
@@ -40,7 +41,13 @@ public class GameFrame extends MyFrame{
 						break;
 					}
 				}
+				
 				sleep(0.03);
+				GameWorld.enemies.addAll(GameWorld.toAdd);
+				GameWorld.enemies.removeAll(GameWorld.toRemove);
+				GameWorld.toAdd.clear();
+				GameWorld.toRemove.clear();
+
 			}
 		} 
 
@@ -98,8 +105,17 @@ public class GameFrame extends MyFrame{
 				//衝突判定
 				if(cheakHit(e,b)) { 
 					System.out.println("あたり");
-					hits++;
-					e.life--;
+					
+					
+					if (e instanceof SplittingEnemy) {
+						hits++;
+						
+				        ((SplittingEnemy) e).damage(1);
+				    }else {
+				    	hits++;
+						e.life--;
+				    }
+					
 				}
 				if(e.life<=0) { 
 					GameWorld.score+=e.score;
