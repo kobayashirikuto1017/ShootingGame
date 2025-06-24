@@ -41,7 +41,7 @@ public class GameFrame extends MyFrame{
 						break;
 					}
 				}
-				
+
 				sleep(0.03);
 				GameWorld.enemies.addAll(GameWorld.toAdd);
 				GameWorld.enemies.removeAll(GameWorld.toRemove);
@@ -84,15 +84,15 @@ public class GameFrame extends MyFrame{
 		}
 	}
 	public void CheckPlayerAndEnemies() {
-		for(int i=0; i<GameWorld.enemies.size();i++) {
-			Enemy e=GameWorld.enemies.get(i);
+	    if (GameWorld.player.isInvincible()) return; // 無敵中は当たり判定をスキップ！
 
-			//衝突判定
-			if(cheakHit(GameWorld.player,e)){
-				System.out.println("やられた！");
-				GameWorld.player.y=-1000;
-			}
-		}
+	    for (int i = 0; i < GameWorld.enemies.size(); i++) {
+	        Enemy e = GameWorld.enemies.get(i);
+	        if (cheakHit(GameWorld.player, e)) {
+	            GameWorld.player.damage(1);
+	            break; // 多段ヒット防止
+	        }
+	    }
 	}
 	public void CheckPlayerBulletsAndEnemies() {
 		int i=0;
@@ -105,17 +105,17 @@ public class GameFrame extends MyFrame{
 				//衝突判定
 				if(cheakHit(e,b)) { 
 					System.out.println("あたり");
-					
-					
+
+
 					if (e instanceof SplittingEnemy) {
 						hits++;
-						
-				        ((SplittingEnemy) e).damage(1);
-				    }else {
-				    	hits++;
+
+						((SplittingEnemy) e).damage(1);
+					}else {
+						hits++;
 						e.life--;
-				    }
-					
+					}
+
 				}
 				if(e.life<=0) { 
 					GameWorld.score+=e.score;

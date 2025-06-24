@@ -12,7 +12,21 @@ public class EnemyBase extends Enemy{
 		if(Math.random()<0.01) {
 			GameWorld.enemies.add(new SplittingEnemy(x,y,0,GameWorld.stage));	  
 		}
-		
+		if(Math.random()<0.05) {
+			GameWorld.enemies.add(new RandomEnemy(x,y,0,GameWorld.stage));
+		}
+		if(Math.random()<0.05) {
+			GameWorld.enemies.add(new DropEnemy(x,y,0,GameWorld.stage));
+		}
+		if(Math.random()<0.05) {
+			GameWorld.enemies.add(new CurveEnemy(x,y,0,GameWorld.stage));
+
+		}
+		if(Math.random()<0.05) {
+			GameWorld.enemies.add(new StraightEnemy(x,y,0,1+GameWorld.stage));	  
+
+		}
+         
          
            
                        
