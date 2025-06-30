@@ -3,6 +3,7 @@ public class DropEnemy extends Enemy{
 	public DropEnemy(double x, double y, double vx, double vy) {
 		 super(x,y,vx,vy);
 		 life=1+GameWorld.stage;
+		 score = 15;
 	}
 	public void move() {
 		super.move();

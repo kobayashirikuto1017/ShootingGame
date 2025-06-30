@@ -3,6 +3,7 @@ public class CurveEnemy extends Enemy{
 	public CurveEnemy(double x, double y, double vx, double vy) {
 		 super(x,y,vx,vy);
 		 life=1+GameWorld.stage;
+		 score=5;
 	}
 	public void move() {
 		super.move();
