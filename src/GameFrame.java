@@ -17,8 +17,9 @@ public class GameFrame extends MyFrame{
 			while(true){
 				clear();
 				repaint();
-				drawString("stage="+GameWorld.stage,300,50,15);
-				drawString("score="+GameWorld.score,300,80,15);
+				drawString("stage:"+GameWorld.stage,280,50,15);
+				drawString("score:"+GameWorld.score,280,80,15);
+				drawString("player HP:"+Player.life,280,120,15);
 				GameWorld.player.draw(this);
 				GameWorld.player.move();
 				movePlayerBullets();
@@ -29,6 +30,7 @@ public class GameFrame extends MyFrame{
 					setColor(0,0,0);
 					drawString("クリア！！",100,200,40);
 					if(GameWorld.enterPressed) {
+						Player.life=5;
 						GameWorld.stage++;
 						break;
 					}
@@ -36,6 +38,7 @@ public class GameFrame extends MyFrame{
 					setColor(0,0,0);
 					drawString("ゲームオーバー！！",50,200,40);
 					if(GameWorld.enterPressed) {
+						Player.life=5;
 						GameWorld.stage=1;
 						GameWorld.score=0;
 						break;

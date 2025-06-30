@@ -2,7 +2,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Player extends Character implements KeyListener{
-	int life = 5;
+	static int life = 5;
 	public int invincibleTimer = 0;
 
 	public void draw(MyFrame f) {
@@ -25,13 +25,12 @@ public class Player extends Character implements KeyListener{
 	
 	public  Player(double x, double y, double vx, double vy) {
 		super(x,y,vx,vy);
-
 	}
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode()==KeyEvent.VK_LEFT) {
+		if(e.getKeyCode()==KeyEvent.VK_LEFT || e.getKeyCode()==KeyEvent.VK_A) {
 			vx=-5;
 		}
-		if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
+		if(e.getKeyCode()==KeyEvent.VK_RIGHT|| e.getKeyCode()==KeyEvent.VK_D) {
 			vx=5;
 		}
 
@@ -44,18 +43,19 @@ public class Player extends Character implements KeyListener{
 					new PlayerBullet(x,y,0,-10));
 
 			System.out.println("弾の数="+GameWorld.playerBullets.size());
-
+            System.out.println("弾を発射！");
 		}
 		if(e.getKeyCode()==KeyEvent.VK_ENTER) {
-			System.out.println("Enterキーが押されました(⌒∇⌒)");
+			System.out.println("enterキーが押されました");
+			
 			GameWorld.enterPressed=true;
 		}
 	}
 	public void keyReleased(KeyEvent e) {
-		if(e.getKeyCode()==KeyEvent.VK_LEFT) {
+		if(e.getKeyCode()==KeyEvent.VK_LEFT||e.getKeyCode()==KeyEvent.VK_A) {
 			vx=0;
 		}
-		if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
+		if(e.getKeyCode()==KeyEvent.VK_RIGHT||e.getKeyCode()==KeyEvent.VK_D) {
 			vx=0;
 		}
 	}
